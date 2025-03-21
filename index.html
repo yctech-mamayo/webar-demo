@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAR Demo (Fixed - Centered Model)</title>
+    <title>WebAR Demo (RAW marker)</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
     <script src="https://unpkg.com/aframe-gesture-detector@3.3.0/dist/aframe-gesture-detector.min.js"></script>
@@ -23,34 +23,30 @@
     </style>
   </head>
   <body>
-    <!-- loading提示 -->
     <div id="loading">正在啟動AR，請允許相機權限...</div>
 
     <a-scene embedded arjs="sourceType: webcam;">
-      <!-- 環境光源 -->
       <a-light type="ambient" color="#ffffff" intensity="1"></a-light>
-      
-      <!-- marker 掃描區 -->
+
+      <!-- 使用 GitHub raw URL 讀取 marker -->
       <a-marker type="pattern" url="https://raw.githubusercontent.com/yctech-mamayo/webar-demo/refs/heads/main/pattern-marker.patt">
-        <!-- 3D模型 + 手勢控制 + 點擊跳轉 -->
         <a-entity
           gltf-model="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
           position="0 0 0"
           scale="0.3 0.3 0.3"
           gesture-handler
-          class="clickable"
-        ></a-entity>
+          class="clickable">
+        </a-entity>
       </a-marker>
+
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      // loading提示結束
       document.querySelector('a-scene').addEventListener('loaded', () => {
         document.getElementById('loading').style.display = 'none';
       });
 
-      // 點擊模型跳轉
       document.addEventListener('click', function (evt) {
         const intersected = evt.target;
         if (intersected.classList && intersected.classList.contains('clickable')) {
