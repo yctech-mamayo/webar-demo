@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/3.3.2/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://unpkg.com/aframe-gesture-detector@3.3.0/dist/aframe-gesture-detector.min.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+      <!-- marker 掃描區 -->
+      <a-marker type="pattern" url="pattern-marker.patt">
+        <!-- 3D模型 + 手勢控制 -->
+        <a-entity
+          gltf-model="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+          scale="0.5 0.5 0.5"
+          gesture-handler
+          ></a-entity>
+      </a-marker>
+      <!-- AR camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
