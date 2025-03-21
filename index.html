@@ -28,21 +28,23 @@
   <body>
     <div id="loading">正在啟動AR，請允許相機權限...</div>
 
+
     <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
       <a-light type="ambient" color="#ffffff" intensity="1"></a-light>
 
       <a-marker type="pattern" url="pattern-marker.patt">
-        <!-- now supports drag + rotate + scale -->
-        <a-entity
-          gltf-model="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-          position="0 0 0"
-          scale="0.5 0.5 0.5"
-          rotation="0 180 0"
-          class="clickable"
-          gesture-handler
-          super-hands
-          drag-rotate
-          stretchable>
+        <!-- 模型 -->
+        <a-entity id="model-wrapper" position="0 0 0">
+          <a-entity
+            gltf-model="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+            position="0 0 0"
+            scale="0.5 0.5 0.5"
+            rotation="0 180 0"
+          ></a-entity>
+
+          <!-- collider hitbox -->
+          <a-box position="0 0.5 0" depth="1" height="1" width="1" material="opacity: 0; transparent: true;" class="clickable"
+                 gesture-handler super-hands drag-rotate stretchable></a-box>
         </a-entity>
       </a-marker>
 
